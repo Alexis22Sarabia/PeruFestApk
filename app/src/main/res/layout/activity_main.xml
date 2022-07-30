@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/colorperufest"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
-android:id="@+id/guideline6"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-app:layout_constraintGuide_begin="16dp" />
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
 
-<androidx.constraintlayout.widget.Guideline
-android:id="@+id/guideline7"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-app:layout_constraintGuide_end="16dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
 
 
     <TextView
@@ -61,8 +62,9 @@ app:layout_constraintGuide_end="16dp" />
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/btnground"
-            android:text="@string/valbtnis"
+            android:background="@drawable/btnpfcblack"
+            android:text="@string/stvingreso"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <Button
@@ -73,6 +75,7 @@ app:layout_constraintGuide_end="16dp" />
             android:layout_weight="1"
             android:background="@drawable/btnground"
             android:text="@string/valreg"
+            android:textColor="@color/white"
             android:textStyle="bold" />
     </LinearLayout>
 

@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener  {
         viewModel.fetchUserData().observe(this,Observer{
             adapter.setListData(it)
             adapter.notifyDataSetChanged()
-        })
+        }
+        )
     }
     override fun onClick(v: View) {
         when(v.id) {

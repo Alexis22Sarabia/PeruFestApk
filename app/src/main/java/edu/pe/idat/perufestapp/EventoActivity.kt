@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.android.gms.common.data.DataHolder
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -110,9 +111,6 @@ class EventoActivity : AppCompatActivity(),
     }
 
     private fun CrearEvento(email: String) {
-
-
-
         fun validardatos(): Boolean {
         var repuesta = true
             if(binding.etnomeven.text.toString().trim().isEmpty()){
@@ -163,12 +161,11 @@ class EventoActivity : AppCompatActivity(),
                 && binding.etdfecha.text.toString().isNotEmpty()
                 && binding.etdireceven.text.toString().isNotEmpty()
             ) {
-                val storageReference = FirebaseStorage.getInstance().getReference("eventos/")
+                val storageReference = FirebaseStorage.getInstance().getReference("eventos/"+ImageUri!!.lastPathSegment)
                 storageReference.putFile(ImageUri).addOnSuccessListener {
                     binding.ivImagEvento.setImageURI(null)
                     storageReference.downloadUrl.addOnSuccessListener { uri ->
                         val url = uri.toString();
-
                         dbeven.collection("eventos").add(
                             hashMapOf(
                                 "descripcion" to binding.etdeseven.text.toString(),

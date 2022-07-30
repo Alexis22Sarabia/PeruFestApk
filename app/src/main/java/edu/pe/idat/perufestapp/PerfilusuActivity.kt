@@ -22,6 +22,7 @@ class PerfilusuActivity : AppCompatActivity() {
         val email = bundle?.getString("email")
         ActualizarActivity(email ?: "")
     }
+
     private fun ActualizarActivity(email: String) {
         binding.etveriemai.text = email
         dba.collection("users").document(email).get().addOnSuccessListener {
@@ -33,6 +34,7 @@ class PerfilusuActivity : AppCompatActivity() {
                 binding.txtpergenero.setText(it.get("genero") as String?)
             binding.etperfechanaci.setText(it.get("fechaDeNacimiento") as String?)
         }
+        var rol =  "Usuario"
         binding.btnactual.setOnClickListener {
             dba.collection("users").document(email).set(
                 hashMapOf("nombre" to binding.ptacrnombre.text.toString(),
@@ -41,6 +43,7 @@ class PerfilusuActivity : AppCompatActivity() {
                             "tipodocumento" to binding.txtperdoc.text.toString(),
                     "documento" to  binding.txtpernumdoc.text.toString(),
                     "fechaDeNacimiento" to binding.etperfechanaci.text.toString(),
+                    "rol" to rol,
                             "genero" to  binding.txtpergenero.text.toString())
             )
             val builder = AlertDialog.Builder(this)

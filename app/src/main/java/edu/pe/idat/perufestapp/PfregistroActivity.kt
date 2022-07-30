@@ -104,14 +104,16 @@ class PfregistroActivity : AppCompatActivity() , View.OnClickListener  {
             }
             return tipodoc
         }
-        if (validardocumento() && validargenero() && obtenergenerose().isNotEmpty()  && obtenerTipodoc().isNotEmpty() &&
+
+        if (validardocumento().toString().isNotEmpty() && validargenero().toString().isNotEmpty() && obtenergenerose().isNotEmpty()  && obtenerTipodoc().isNotEmpty() &&
             binding.etnombre.text.toString().isNotEmpty() && binding.etapellido.text.toString().isNotEmpty()
             && binding.etnumerodocumento.text.toString().isNotEmpty() && binding.etcelular.text.toString().isNotEmpty()
-          && binding.etemailreg.text.toString().isNotEmpty() && binding.etregpasw.text.toString().isNotEmpty()
+            && binding.etemailreg.text.toString().isNotEmpty() && binding.etregpasw.text.toString().isNotEmpty()
             && binding.etfechanaci.text.toString().isNotEmpty()){
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.etemailreg.text.toString(),
                 binding.etregpasw.text.toString()).addOnCompleteListener(this) {
                     val email = binding.etemailreg.text.toString()
+                var rol =  "Usuario"
                     if (it.isSuccessful) {
                         db.collection("users").document(email).set(hashMapOf("nombre" to binding.etnombre.text.toString(),
                             "apellido" to binding.etapellido.text.toString(),
@@ -119,6 +121,7 @@ class PfregistroActivity : AppCompatActivity() , View.OnClickListener  {
                             "tipodocumento" to obtenerTipodoc(),
                             "fechaDeNacimiento" to binding.etfechanaci.text.toString(),
                             "documento" to  binding.etnumerodocumento.text.toString(),
+                            "rol" to rol,
                             "genero" to obtenergenerose())
                         ).addOnSuccessListener{
                             ShowCrearEvento()

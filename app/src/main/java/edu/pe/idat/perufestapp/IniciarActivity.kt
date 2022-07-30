@@ -8,11 +8,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import edu.pe.idat.perufestapp.Administrador.AdministradorActivity
 
 import edu.pe.idat.perufestapp.databinding.ActivityIniciarBinding
 //logeo de App
 class IniciarActivity : AppCompatActivity() , View.OnClickListener {
     private lateinit var binding: ActivityIniciarBinding
+   // private val dba = FirebaseFirestore.getInstance()
+   private val dba = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIniciarBinding.inflate(layoutInflater)
@@ -32,8 +37,8 @@ class IniciarActivity : AppCompatActivity() , View.OnClickListener {
         }
     }
     private fun AccederActivity() {
-        if (binding.etusuarioPf.text.isNotEmpty() &&
-            binding.etpasswordPf.text.isNotEmpty()){
+        if (binding.etusuarioPf.text.toString().isNotEmpty() &&
+            binding.etpasswordPf.text.toString().isNotEmpty()){
             FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.etusuarioPf.text.toString(),
                 binding.etpasswordPf.text.toString()).addOnCompleteListener {
                 if(it.isSuccessful){
@@ -57,14 +62,23 @@ class IniciarActivity : AppCompatActivity() , View.OnClickListener {
         dialog.show()
     }
 
-    private fun ShowHome(email: String, provider: ProviderpeType) {
+    private fun ShowHome(email: String, provider: ProviderpeType ) {
+        dba.collection("users").document(email).get().addOnSuccessListener {
+            binding.txtrol.setText(it.get("rol") as String?)
 
-        val eventoInten = Intent(this, PerueventoActivity ::class.java).apply{
-            putExtra("email", email)
-            putExtra("provider", provider.name)
-
+            if (binding.txtrol.text.toString() == "Administrador") {
+                val eventoAdmin = Intent(this, AdministradorActivity::class.java).apply {
+                    putExtra("email", email)
+                    putExtra("provider", provider.name)
+                }
+                startActivity(eventoAdmin)
+            } else {
+                val eventoInten = Intent(this, PerueventoActivity::class.java).apply {
+                    putExtra("email", email)
+                    putExtra("provider", provider.name)
+                }
+                startActivity(eventoInten)
+            }
         }
-        startActivity(eventoInten)
     }
-
 }

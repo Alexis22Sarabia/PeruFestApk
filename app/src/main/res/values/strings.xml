@@ -27,7 +27,7 @@
     <string name="valchekte">Teatros</string>
     <string name="valcheken">Entretenimiento</string>
     <string name="valcheotr">Otros</string>
-    <string name="valcorreoS">Ingresa tu Correo</string>
+    <string name="valcorreoS">Correo</string>
     <string name="valpassec">Confirma tu Contraseña</string>
     <string name="valpaswd">Contraseña</string>
     <string name="btnregis">REGISTRAR</string>
@@ -64,5 +64,12 @@
     <string name="valcompar">COMPARTIR</string>
     <string name="read_storage_permission_denied">Oops, parece que no aceptaste los permisos necesarios. Puedes hacerlo desde configuración.</string>
     <string name="image_selection_failed">Oops, parece que algo salió mal.</string>
+    <string name="stvingreso">INGRESAR</string>
+    <string name="valgratis">Gratis</string>
+    <string name="valentraven">Venta</string>
+    <string name="title_activity_administrador">AdministradorActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>
